@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1097289392896",
+    "project_id": "image-adafb",
+    "storage_bucket": "image-adafb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097289392896:android:5a523043863e0cbb6bc9e5",
+        "android_client_info": {
+          "package_name": "com.example.img"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0zURjlO3pajyqfNEa_1N90cMuFXHDNR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
