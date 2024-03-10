@@ -2,7 +2,9 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:img/controller/selectImg.dart';
+import 'package:img/view/widgets/test.dart';
 
 class SelectImg extends StatefulWidget {
   const SelectImg({Key? key, required this.title}) : super(key: key);
@@ -26,88 +28,14 @@ class _SelectImgState extends State<SelectImg> {
           Row(
 
             children: [
-              ElevatedButton(
-                
-                onPressed: () async {
-                  final selectedImagePath = await userController.afficheImageGallery();
-                  setState(() {
-                    imagePath = selectedImagePath;
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        
-                        return IntrinsicHeight(
-
-                          child:Column (children: [
-                            IntrinsicHeight(
-                              child :imagePath!
-                            ),
-                            ElevatedButton(onPressed: (){
-
-                            },
-                            
-                            child:  const Text("send photo"),                     
-                               ),
-                          ],
-                          
-                          )
-                          
-                          
-                          
-                          );
-                      },
-                    );
-                  });
-                },
-                
-            
-                    child:  Column(
-                    children: const [
-                          Icon(Icons.photo) ,
-                          Text('gallery')
-                    ],
-                  )
-                
-              ),
-               ElevatedButton(
-                onPressed: () async {
-                  final selectedImagePath = await userController.afficheImageCamera();
-                  setState(() {
-                    imagePath = selectedImagePath;
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return IntrinsicHeight(
-
-                          child:Column (children: [
-                            IntrinsicHeight(
-                              child :imagePath!
-                            ),
-                            ElevatedButton(onPressed: (){
-
-                            },
-                            
-                            child:  const Text("send photo"),  
-                                               
-                               ),
-                          ],
-                          
-                          )
-                          
-                          
-                          
-                          );
-                      },
-                    );
-                  });
-                },
-                child:  Column(
-                    children: const [
-                          Icon(Icons.camera_alt_rounded) ,
-                          Text('camera'),
-                    ],
-                  ),
-              ),
+              Button1(buttonIcon: Icons.photo,
+                buttonTitle: "Gallery",imagePath: imagePath,function:() async {
+                return await userController.afficheImageGallery2(ImageSource.gallery); 
+              },),
+              Button1(buttonIcon: Icons.camera_alt_outlined,
+                buttonTitle: "Camera", function: () async {
+                return await userController.afficheImageGallery2(ImageSource.camera); 
+              },imagePath: imagePath,)
 
             ],
           ),

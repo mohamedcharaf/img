@@ -25,23 +25,35 @@ Future<String?> selectImage(ImageSource source) async {
   }
 }
   
-  Future<Widget> afficheImageGallery() async {
-    String? imagePath;
+//   Future<Widget> afficheImageGallery() async {
+//     String? imagePath;
 
-imagePath = await selectImage(ImageSource.gallery);
+// imagePath = await selectImage(ImageSource.gallery);
 
    
-    if (imagePath != null) {
-      return Image.file(File(imagePath));
-    } else {
-      return Text('Aucune image sélectionnée');
-    }
-  }
+//     if (imagePath != null) {
+//       return Image.file(File(imagePath));
+//     } else {
+//       return Text('Aucune image sélectionnée');
+//     }
+//   }
 
-    Future<Widget> afficheImageCamera() async {
+//     Future<Widget> afficheImageCamera() async {
+//     String? imagePath;
+
+// imagePath = await selectImage(ImageSource.camera);
+
+   
+//     if (imagePath != null) {
+//       return Image.file(File(imagePath));
+//     } else {
+//       return Text('Aucune image sélectionnée');
+//     }
+//   }
+    Future<Widget> afficheImageGallery2( ImageSource imageSource)  async {
     String? imagePath;
 
-imagePath = await selectImage(ImageSource.camera);
+imagePath = await selectImage(imageSource);
 
    
     if (imagePath != null) {
