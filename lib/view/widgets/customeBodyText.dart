@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+
+class CustomeBodyText extends StatelessWidget {
+  final String body;
+  const CustomeBodyText({super.key, required this.body});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding:const EdgeInsets.all(27.0) ,
+                      child:  Text(
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        textAlign:TextAlign.center ,
+                       body)),
+                  );
+  }
+}

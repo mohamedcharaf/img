@@ -1,0 +1,44 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+
+class ImageController extends GetxController{
+
+  Future<String?> selectImage(ImageSource source) async {
+  final picker = ImagePicker();
+  final pickedImage = await picker.pickImage(source: source);
+
+  if (pickedImage != null) {
+    // L'image a été sélectionnée depuis la galerie ou capturée depuis la caméra
+    // Retourner le chemin de l'image sélectionnée
+    return pickedImage.path;
+  } else {
+    // Aucune image n'a été sélectionnée ou capturée
+    // Gérer cet état en conséquence
+    return null;
+  }
+}
+    
+  Future<Widget> afficheImageGallery2( ImageSource imageSource)  async {
+    String? imagePath;
+
+    imagePath = await selectImage(imageSource);
+
+   
+    if (imagePath != null) {
+      return Image.file(File(imagePath));
+    } else {
+      return Text('Aucune image sélectionnée');
+      
+    }
+    
+  }
+    
+
+
+
+
+
+}
