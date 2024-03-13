@@ -40,6 +40,8 @@ dependencies:
   image_picker: ^1.0.2
   get:
   lottie:
+  firebase_storage: ^11.6.0
+  path: ^1.8.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

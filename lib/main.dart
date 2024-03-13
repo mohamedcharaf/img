@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home:  SelectImg(title: 'selected image',),
+       home:  SelectImg(title: 'selected image',),
+      // home:const test() ,
     );
   }
 }
