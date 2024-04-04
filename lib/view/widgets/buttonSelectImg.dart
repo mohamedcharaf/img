@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, unused_import, prefer_const_constructors_in_immutables, dead_code, file_names, use_build_context_synchronously
+// ignore_for_file: must_be_immutable, unused_import, prefer_const_constructors_in_immutables, dead_code, file_names
 
 import 'dart:async';
 import 'dart:io';
@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:img/controller/img_controller.dart';
+import 'package:img/view/listPharma.dart';
 import 'package:path/path.dart' as path;
 
-import '../../z_test/listimage.dart';
+
 import '../selectImg.dart';
 
 class ButtonSelectImg extends StatelessWidget {
@@ -41,15 +42,10 @@ class ButtonSelectImg extends StatelessWidget {
             ),
             child: ElevatedButton(
               onPressed: () async {
-                String? selectedImagePath = await controller.afficheImage(
+                var selectedImagePath = await controller.afficheImage(
                   isGallery ? ImageSource.gallery : ImageSource.camera,
                 );
-                   Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PharmacyListScreen (selectedImagePath: selectedImagePath,),
-      ),
-    );
+                
 
                 if (selectedImagePath != null) {
                   showModalBottomSheet(
@@ -105,7 +101,7 @@ class ButtonSelectImg extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>  const PharmacyListScreen(selectedImagePath: '',),
+                builder: (context) => const PharmacyListScreen(),
               ),
             );
           },
@@ -120,67 +116,5 @@ class ButtonSelectImg extends StatelessWidget {
     );
   }
 }
-
-
-
-// import 'package:flutter/material.dart';
-
-// class Button1 extends StatefulWidget {
-//   final String buttonTitle;
-//   final IconData? buttonIcon;
-//   final Future<Widget?> Function() function;
-//   Widget? imagePath;
-
-//   Button1({Key? key, required this.buttonTitle, required this.function, this.imagePath, required this.buttonIcon})
-//       //: super(key: key)
-//       ;
-
-//   @override
-//   State<Button1> createState() => _Button1State();
-// }
-
-// class _Button1State extends State<Button1> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: () async {
-//         var selectedImagePath = await widget.function();
-//         setState(() {
-//           // Handle the result properly
-          
-//             widget.imagePath = selectedImagePath;
-//             showModalBottomSheet(
-//               context: context,
-//               builder: (BuildContext context) {
-//                 return IntrinsicHeight(
-//                   child: Column(
-//                     children: [
-//                       IntrinsicHeight(
-//                         child: widget.imagePath!,
-//                       ),
-//                       ElevatedButton(
-//                         onPressed: () {},
-//                         child: Text(widget.buttonTitle),
-//                       ),
-//                     ],
-//                   ),
-//                 );
-//               },
-//             );
-          
-//         });
-//       },
-//       child: Column(
-//         children:  [
-//           Icon(widget.buttonIcon),
-//           Text(widget.buttonTitle),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-
-
 
 

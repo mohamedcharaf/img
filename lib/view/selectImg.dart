@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:img/constants/appImages.dart';
 import 'package:img/constants/appbodytext.dart';
 import 'package:img/controller/img_controller.dart';
-import 'package:img/controller/selectImg.dart';
+
 import 'package:img/view/widgets/customeBodyText.dart';
 import 'package:img/view/widgets/customeImage.dart';
 import 'package:img/view/widgets/customeTitle.dart';

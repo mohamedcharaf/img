@@ -1,14 +1,19 @@
 
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_network/image_network.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:img/controller/img_controller.dart';
 
 import 'ordonance_detail.dart';
 import 'ordonnace_model.dart';
 
 
 class Teacher extends StatefulWidget {
+  
   const Teacher({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +21,7 @@ class Teacher extends StatefulWidget {
 }
 
 class _TeacherState extends State<Teacher> {
+    final ImageController _imageController = Get.find<ImageController>();
   List<Ordonoces> ordonoces = [];
 
   Future<void> getFirestoreCollection() async {
@@ -60,7 +66,7 @@ class _TeacherState extends State<Teacher> {
           var ordonoce = ordonoces[index];
           return GestureDetector(
             onTap: () {
-              navigateToAgrandirImage(context, ordonoce.ordonoce_Image);
+             _imageController.navigateToAgrandirImage(context, ordonoce.ordonoce_Image);
             },
             child: Card(
               child: Padding(
@@ -103,15 +109,7 @@ class _TeacherState extends State<Teacher> {
       ),
     );
   }
-
-
-
-  void navigateToAgrandirImage(BuildContext context, String imageUrl) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => AgrandirImagePage(imageUrl: imageUrl),
-      ),
-    );
-  }
+  
 }
+
+ 
