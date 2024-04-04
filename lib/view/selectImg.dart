@@ -1,5 +1,4 @@
 // ignore_for_file: unused_import, file_names, sized_box_for_whitespace, avoid_print, must_be_immutable
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ import 'package:img/controller/selectImg.dart';
 import 'package:img/view/widgets/customeBodyText.dart';
 import 'package:img/view/widgets/customeImage.dart';
 import 'package:img/view/widgets/customeTitle.dart';
-import 'package:img/view/widgets/button.dart';
+import 'package:img/view/widgets/buttonSelectImg.dart';
 import 'package:lottie/lottie.dart';
 
 class SelectImg extends StatelessWidget {
@@ -32,6 +31,8 @@ class SelectImg extends StatelessWidget {
               CustomeLottieImage(
                 height: 260,
                 path: AppImages.select,
+                speed:0.1,
+
               ),
               const CustomeTitle(
                 title: "Choose Image",
@@ -41,26 +42,27 @@ class SelectImg extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Button1(
+                  ButtonSelectImg(
                     buttonIcon: Icons.photo,
                     buttonTitle: "Gallery",
-                  
-                    function: () {
-                      return controller
-                          .afficheImageGallery2(ImageSource.gallery);
-                    },
+                    isGallery: true,
+
+                    // function: () {
+                    //   return controller
+                    //       .afficheImage(ImageSource.gallery);
+                    // },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Button1(
+                  ButtonSelectImg(
                     buttonIcon: Icons.camera_alt_outlined,
                     buttonTitle: "Camera",
-                    function: () async {
-                      return controller
-                          .afficheImageGallery2(ImageSource.camera);
-                    },
-                    
+                    isGallery: false,
+                    // function: () async {
+                    //   return controller
+                    //       .afficheImage(ImageSource.camera);
+                    // },
                   )
                 ],
               ),

@@ -1,7 +1,8 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_import
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,7 +25,7 @@ class ImageController extends GetxController {
     }
   }
 
-  Future<String?> afficheImageGallery2(ImageSource imageSource) async {
+  Future<String?> afficheImage(ImageSource imageSource) async {
     String? imagePath;
 
     imagePath = await selectImage(imageSource);
@@ -32,20 +33,81 @@ class ImageController extends GetxController {
     return (imagePath);
   }
 
-  Future<String?> uploadImageToFirebaseStorage(String imagePath) async {
-    File image = File(imagePath);
-    String imageName = path.basename(image.path);
-    firebase_storage.Reference ref =
-        firebase_storage.FirebaseStorage.instance.ref().child(imageName);
+  // Future<String?> uploadImageToFirebaseStorage(String imagePath) async {
+  //   File image = File(imagePath);
+  //   String imageName = path.basename(image.path);
+  //   firebase_storage.Reference ref =
+  //       firebase_storage.FirebaseStorage.instance.ref().child(imageName);
 
-    try {
-      await ref.putFile(image);
-      String downloadURL = await ref.getDownloadURL();
-      return downloadURL;
-    } catch (e) {
-      // Gérer les erreurs de téléversement
-      print('Error uploading image: $e');
-      return null;
-    }
+  //   try {
+  //     await ref.putFile(image);
+  //     String downloadURL = await ref.getDownloadURL();
+  //     return downloadURL;
+  //   } catch (e) {
+  //     // Gérer les erreurs de téléversement
+  //     print('Error uploading image: $e');
+  //     return null;
+  //   }
+  // }
+  Future<String?> uploadImageToFirebaseStorage(String imagePath) async {
+  File image = File(imagePath);
+  String imageName = path.basename(image.path);
+  firebase_storage.Reference ref =
+      firebase_storage.FirebaseStorage.instance.ref().child(imageName);
+
+  try {
+    // Téléverser l'image
+    await ref.putFile(image);
+    
+    // Obtenir l'URL de téléchargement
+    String downloadURL = await ref.getDownloadURL();
+    
+    return downloadURL; // Retourner l'URL de téléchargement
+  } catch (e) {
+    // Gérer les erreurs de téléversement
+    print('Error uploading image: $e');
+    return null;
   }
+}
+
+
+// Future<void> uploadImageAndAddToFirestore(String imagePath) async {
+//   // Téléverser l'image vers Firebase Storage
+//   String? imageUrl = await uploadImageToFirebaseStorage(imagePath);
+
+//   if (imageUrl != null) {
+//     // Ajouter l'URL de l'image à Firestore
+//     try {
+//       await FirebaseFirestore.instance.collection('photo').add({
+//         'image_url': imageUrl,
+//         'timestamp': FieldValue.serverTimestamp(),
+//       });
+//       print('Image URL added to Firestore');
+//     } catch (e) {
+//       print('Error adding image URL to Firestore: $e');
+//     }
+//   } else {
+//     print('L\'URL de l\'image est null, veuillez vérifier les erreurs.');
+//   }
+// }
+Future<void> uploadImageAndAddToFirestore(String imagePath) async {
+  // Téléverser l'image vers Firebase Storage et obtenir l'URL de téléchargement
+  String? imageUrl = await uploadImageToFirebaseStorage(imagePath);
+
+  if (imageUrl != null) {
+    // Ajouter l'URL de l'image à Firestore
+    try {
+      await FirebaseFirestore.instance.collection('photo').add({
+        'image_url': imageUrl,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      print('Image URL added to Firestore');
+    } catch (e) {
+      print('Error adding image URL to Firestore: $e');
+    }
+  } else {
+    print('L\'URL de l\'image est null, veuillez vérifier les erreurs.');
+  }
+}
+
 }

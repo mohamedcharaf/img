@@ -1,8 +1,12 @@
+// ignore_for_file: unused_import
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:img/partie_pharmacy/list_notification.dart';
 import 'firebase_options.dart';
 import 'view/selectImg.dart';
+import 'z_test/listimage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +25,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-       home:  SelectImg(title: 'selected image',),
-      // home:const test() ,
+          home:  SelectImg(title: 'selected image',),
+          //  home : const Teacher(),
+      //  home: PharmacyListScreen(),
+      // home: ImageList(),
+
     );
   }
 }
